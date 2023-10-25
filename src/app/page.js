@@ -1,20 +1,29 @@
 'use client'
-
+import { Image } from "@nextui-org/react"
 import ProductCard from "./components/ProductsCard"
+import { motion } from "framer-motion"
 
 export default function Home() {
   return (
-    <div className="container w-full h-full">
-      <div className=" bg-white">
-        <div className="w-[393px] h-[299px] left-0 top-0 ">
-          <img className="w-[393px] h-[239px] left-0 top-[60px] " src="cenafamiliar.jpg" />
-          <div className="w-[393px] h-[61px] left-0 top-0  bg-stone-500 shadow" />
-      </div>
-      <img className="w-[223px] h-56 left-[86px] top-[314px] " src="Tuvyo.png" />
-      <div className="left-[162px] top-[538px] "><span className="text-black text-xl font-normal font-['Inter'] leading-[80px] tracking-[4px]">Vino</span><span className="text-black text-xl font-normal font-['Inter'] leading-[80px]">s</span></div>
-      
-      <ProductCard/>
+    <div className="w-full h-full ">
+      <div className="flex flex-wrap md:flex-colum">
+        <div className="w-screen h-screen bg-cover bg-center bg-site z-10 relative" >
+          {/* Aca iria una pequeña animacion  */}
+            {/* <motion.div> */}
+              <Image className="z-20 absolute  md:top-[6.5rem] md:left-[3.5rem]"width={100} height={100}  alt='Vinos catalogos catalogos de vinos distruibuidora de vinos premium'src="Tuvyo.png" />
+            {/* </motion.div> */}
         </div>
+        <motion.div 
+        variants={fadeIn("left", 0.5)}
+        initial="hidden"
+        animate="show"
+        exit="hidden"
+        transition={{duration:1 , ease:'easeInOut'}}
+        className="">
+          <motion.h1 className=""><span className="text-black text-xl font-normal font-['Inter'] leading-[80px] tracking-[4px]">Vino</span><span className="text-black text-xl font-normal font-['Inter'] leading-[80px]">s</span></motion.h1>
+          <ProductCard/>
+        </motion.div>
+      </div>
     </div>
   )
 }

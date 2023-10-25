@@ -3,7 +3,7 @@
 export default function ProductCard(){
 
   return(
-    <>
+    <div className="h-auto container">
     <div className="flex  w-1/2 min-h-[263px]">
       <div className="w-1/2 h-[280px] justify-center flex flex-wrap  bg-stone-400 rounded-[10px]">
         <img className="w-full max-h-[148px] m-auto" src="Tuvyos.png" />
@@ -18,6 +18,6 @@ export default function ProductCard(){
         </div>
       </div>
     </div>
-    </>
+    </div>
   )
 }

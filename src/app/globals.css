@@ -25,3 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.h-screen-90 {
+  height: 90vh;
+}
