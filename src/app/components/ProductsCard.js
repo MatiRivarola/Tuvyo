@@ -1,23 +1,48 @@
 'use client'
+import React from "react";
+import {Card, CardHeader, CardBody, CardFooter, Image, Button} from "@nextui-org/react";
+
+const list = [
+  {
+    title:'Ricardo Santos Malbec',
+    price:'$3500',
+    img:'/vino-ricardosantos.PNG',
+  },
+  {
+    title:'Ricardo Santos El gran Malbec',
+    price:'$10000',
+    img:'/vino-ricardosantos.PNG',
+  },
+  {
+    title:'Ricardo Santos Cabernet Sauvignon',
+    price:'$3500',
+    img:'/ricardosantos-cabernetsauvignon.PNG',
+  },
+]
 
 export default function ProductCard(){
 
   return(
-    <div className="h-auto container">
-    <div className="flex  w-1/2 min-h-[263px]">
-      <div className="w-1/2 h-[280px] justify-center flex flex-wrap  bg-stone-400 rounded-[10px]">
-        <img className="w-full max-h-[148px] m-auto" src="Tuvyos.png" />
-        <div className="min-h-[115px]">
-            <h1 className="text-black text-[13px] font-normal font-['Inter'] leading-[17px] tracking-[2.60px]">Ricardo Santos</h1>
-            <h2 className="w-[134px] h-[41px]  text-black text-[10px] font-normal font-['Inter'] leading-3">Malbec, Con un gran aroma y calidad en cada sorbo</h2>
-            <div className="w-[68px] h-[17px] ">
-                <div className="w-[68px] h-[17px]   bg-rose-950 rounded-[30px]">
-                  <button className="w-[39.71px] h-2 text-stone-400 text-[10px] font-normal font-['Inter'] leading-3">Ver mas</button>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 px-1">
+      {list.map((item, index) => (
+        <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
+          <CardBody className="overflow-visible">
+            <Image
+              shadow="sm"
+              radius="lg"
+              width="100%"
+              height="210"
+              alt={item.title}
+              className="w-full object-cover max-h-[210px]"
+              src={item.img}
+            />
+          </CardBody>
+          <CardFooter className="text-small justify-between">
+            <b>{item.title}</b>
+            <p className="text-default-500">{item.price}</p>
+          </CardFooter>
+        </Card>
+      ))}
     </div>
   )
 }

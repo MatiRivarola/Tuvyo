@@ -19,6 +19,7 @@ module.exports = {
       },
       backgroundImage: {  
         site: 'url("/inicio.png")',
+        mobile:'url("/mobile.png")',
       },
       animation: {
         'spin-slow': 'spin 8s linear infinite',
