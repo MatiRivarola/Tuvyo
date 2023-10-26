@@ -61,7 +61,8 @@ export default function Home() {
         ref={setRef}
         exit='hidden'
         transition={{duration:1 , ease:'easeInOut'}}
-        className="text-center">
+        className="text-center flex flex-col al">
+          <Image className="w-550 h-550"  src='Tuvyo.png'/>
           <h1 className="h1"><span className="font-['Inter'] leading-[80px] tracking-[4px]">Vinos</span></h1>
         </motion.div>
         <motion.div

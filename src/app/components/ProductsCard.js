@@ -27,13 +27,20 @@ const list = [
 
 export default function ProductCard(){
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [selectedProduct, setSelectedProduct] = React.useState(null);
 
+  const openModal = (product) => {
+    setSelectedProduct(product)
+  }
+  const closeModal = () => {
+    setSelectedProduct(null)
+  }
   return(
     <>
     <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 px-1">
       {list.map((item, index) => (
         <>
-          <Card shadow="sm" key={index} isPressable onPress={onOpen}>
+          <Card shadow="sm" key={index} isPressable onPress={()=>openModal(item)}>
             <CardBody className="overflow-visible">
               <Image
                 shadow="sm"
@@ -52,9 +59,8 @@ export default function ProductCard(){
           </Card>
           <Modal 
           backdrop="opaque" 
-          isOpen={isOpen} 
-          onOpenChange={onOpenChange}
-          key={index}
+          isOpen={selectedProduct === item} 
+          onOpenChange={closeModal}
           motionProps={{
             variants: {
               enter: {
@@ -79,8 +85,8 @@ export default function ProductCard(){
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">{item.title}</ModalHeader>
-                <ModalBody>
+                <ModalHeader  className="flex flex-col gap-1">{item.title}</ModalHeader>
+                <ModalBody >
                   <Image
                   src={item.img}
                   alt={item.title}

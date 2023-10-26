@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google'
+import { Inter , Po } from 'next/font/google'
 import './globals.css'
 import HeadPage from './components/Head'
 import { Providers } from './providers.jsx'
