@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <>
-    <div className="w-full">
+    <div className="w-full bg-gradient-to-b from-yellow-900 to-rose-950">
       <div className="flex flex-wrap">
         <div className="w-screen h-screen bg-cover  bg-center bg-mobile sm:bg-site z-10 relative" >
           {/* Aca iria una pequeña animacion  */}
@@ -51,7 +51,7 @@ export default function Home() {
 
             {/* </motion.div> */}
         </div>
-        <Divider className="my-4 px-3"/>
+        <Divider className="my-5 text-accent w-[75%]"/>
       </div>
     <section className="w-full" id={'vinos'}>
         <motion.div 
