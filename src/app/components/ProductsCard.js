@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import {Card, CardHeader, CardBody, CardFooter, Image, Button,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
-import {} from "@nextui-org/react";
+import { FaWhatsapp }from 'react-icons/fa'
 
 const list = [
   {
@@ -45,9 +45,9 @@ export default function ProductCard(){
                 shadow="sm"
                 radius="lg"
                 width="100%"
-                height="210"
+                height={210}
                 alt={item.title}
-                className="w-full object-cover max-h-[210px]"
+                className="w-full object-cover h-[210px]"
                 src={item.img}
               />
             </CardBody>
@@ -98,7 +98,8 @@ export default function ProductCard(){
                     Close
                   </Button>
                   <Button color="primary" onPress={onClose}>
-                    Action
+                    Contactanos
+                    <FaWhatsapp className='text-2xl cursor-pointer hover:text-[#4ade80]'/>
                   </Button>
                 </ModalFooter>
               </>

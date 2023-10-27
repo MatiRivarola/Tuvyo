@@ -11,7 +11,7 @@ export default function FooterPage(){
     <footer className='bg-gradient-to-b from-[#440a0a] to-neutral-950 h-1/2 w-full md:flex-row flex flex-col justify-around items-start p-20'>
       <div className='pb-5'>
         <ul>
-          <p className='text-gray-800 font-bold text-3xl pb-6'>
+          <p className='text-white font-bold text-3xl pb-6'>
             Contacto <span className='text-accent'></span>
           </p>
           <div className='flex gap-6 pb-5'>
@@ -24,31 +24,31 @@ export default function FooterPage(){
       </div>
       <div className='p-5'>
         <ul>
-          <p className='text-gray-800 font-bold text-2xl pb-4'>Productos</p>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Categorias</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Mas solicitados</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Opciones de pago</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Stock</li>
+          <p className='text-white font-bold text-2xl pb-4'>Productos</p>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Categorias</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Mas solicitados</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Opciones de pago</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Stock</li>
         </ul>
       </div>
       <div className='p-5'>
         <ul>
-          <p className='text-gray-800 font-bold text-2xl pb-4'>
+          <p className='text-white font-bold text-2xl pb-4'>
             Empresa
           </p>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Acerca de nosotros</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Productos</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Precios</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Contactanos</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Acerca de nosotros</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Productos</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Precios</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Contactanos</li>
         </ul>
       </div>
       <div className='p-5'>
         <ul>
-          <p className='text-gray-800 font-bold text-2xl pb-4'>
+          <p className='text-white font-bold text-2xl pb-4'>
             Soporte
           </p>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Contacto</li>
-          <li className='text-gray-500 text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Privacidad</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Contacto</li>
+          <li className='text-secondary text-md pb-2 font-semibold hover:text-accent cursor-pointer'>Privacidad</li>
         </ul>
 
       </div>
