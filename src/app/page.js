@@ -24,6 +24,7 @@ export default function Home() {
       {
         // Considera visible cuando el 30% del elemento es visible
         threshold: 0.5,
+        
       }
     );
 
@@ -41,17 +42,17 @@ export default function Home() {
 
   return (
     <>
-    <div className="w-full bg-gradient-to-b from-yellow-900 to-rose-950">
+    <div className="w-full bg-gradient-to-b from-neutral-950 to-red-950">
       <div className="flex flex-wrap">
         <div className="w-screen h-screen bg-cover  bg-center bg-mobile sm:bg-site z-10 relative" >
           {/* Aca iria una pequeña animacion  */}
             {/* <motion.div> */}
-              <Image className="z-0 absolute top-[106px] left-[152px] sm:top-[6.5rem] sm:left-[3.5rem]"width={100} height={100}  alt='Vinos catalogos catalogos de vinos distruibuidora de vinos premium'src="Tuvyo.png" />
-              <h1 className="h1 z-10 absolute mix-blend-color-dodge "><span className="font-['Inter'] leading-[80px] tracking-[4px]">Catalogo de Tuvyo</span></h1>
+              <Image className="z-0 absolute top-[130px] left-[150px] sm:top-[6.5rem] sm:left-[3.5rem]"width={100} height={100}  alt='Vinos catalogos catalogos de vinos distruibuidora de vinos premium'src="Tuvyo.png" />
+              <h1 className="h1 z-10 absolute mix-blend-color-dodge text-primary  top-[40px] left-[26%] sm:left-[26%]"><span className="leading-[80px] tracking-[4px]">Catalogo</span></h1>
 
             {/* </motion.div> */}
         </div>
-        <Divider className="my-5 text-accent w-[75%]"/>
+        <Divider className="my-5 text-primary w-[75%]"/>
       </div>
     <section className="w-full" id={'vinos'}>
         <motion.div 
@@ -61,9 +62,9 @@ export default function Home() {
         ref={setRef}
         exit='hidden'
         transition={{duration:1 , ease:'easeInOut'}}
-        className="text-center flex flex-col al">
-          <Image className="w-550 h-550"  src='Tuvyo.png'/>
-          <h1 className="h1"><span className="font-['Inter'] leading-[80px] tracking-[4px]">Vinos</span></h1>
+        className="text-center flex flex-col items-center">
+          <Image className="w-[200px] sm:w-550 sm:h-550"  src='Tuvyo.png'/>
+          <h1 className="h1"><span className="leading-[80px] tracking-[4px]">Vinos</span></h1>
         </motion.div>
         <motion.div
         variants={fadeIn("right", 0.4)}

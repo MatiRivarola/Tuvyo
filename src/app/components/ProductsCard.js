@@ -26,7 +26,6 @@ const list = [
 ]
 
 export default function ProductCard(){
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [selectedProduct, setSelectedProduct] = React.useState(null);
 
   const openModal = (product) => {
@@ -82,7 +81,7 @@ export default function ProductCard(){
             }
           }}
           >
-          <ModalContent>
+          <ModalContent className="items-center">
             {(onClose) => (
               <>
                 <ModalHeader  className="flex flex-col gap-1">{item.title}</ModalHeader>
