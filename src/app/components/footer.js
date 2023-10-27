@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import React from 'react'
 import { FaWhatsapp , FaInstagram } from "react-icons/fa";
 import { FaMeta } from "react-icons/fa6"
@@ -15,7 +16,9 @@ export default function FooterPage(){
             Contacto <span className='text-accent'></span>
           </p>
           <div className='flex gap-6 pb-5'>
-            <FaWhatsapp className='text-2xl cursor-pointer hover:text-[#4ade80]'/>
+            <Link href={'https://wa.me/+5491127996521?text=Hola,%20estoy%20interesado%20en%20comprar%20vinos%20'}>
+              <FaWhatsapp className='text-2xl cursor-pointer hover:text-[#4ade80]'/>
+            </Link>
             <FaInstagram className='text-2xl cursor-pointer hover:text-[#df4223]'/>
             <FaMeta className='text-2xl cursor-pointer hover:text-[#2563eb]'/>
 

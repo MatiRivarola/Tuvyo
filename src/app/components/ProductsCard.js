@@ -2,28 +2,9 @@
 import React from "react";
 import {Card, CardHeader, CardBody, CardFooter, Image, Button,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import { FaWhatsapp }from 'react-icons/fa'
+import { list } from './List-of-products'
+import { Link } from "@nextui-org/react";
 
-const list = [
-  {
-    title:'Ricardo Santos Malbec',
-    price:'$3500',
-    img:'/vino-ricardosantos.PNG',
-    descripcion:"El tono violáceo de este vino se combina con aromas terrosos y de pimienta negra, y sus suaves influencias de roble. Los sabores a frutas rojas de bosque, integrados con taninos suaves resultan en un vino de gran cuerpo, para disfrutarlo ahora y con grandes perspectivas de añejamiento.",
-  },
-  {
-    title:'Ricardo Santos El gran Malbec',
-    price:'$10000',
-    img:'/ricardosantos-elgranmalbec.PNG',
-    descripcion:"Tono violáceo profundo, con aromas intensos combinando las frutas rojas con el roble. En boca resalta su gran cuerpo con una untuosidad que combinado con la frescura provoca una larga permanencia. Todos estos atributos logran que este vino tenga un gran potencial de añejamiento",
-  },
-  {
-    title:'Ricardo Santos Cabernet Sauvignon',
-    price:'$3500',
-    img:'/ricardosantos-cabernetsauvignon.PNG',
-    descripcion:"Es un vino de color rojo rubí con gran intensidad aromática. Con aromas complejos a pimienta, casis y frutos rojos.De gran concentración en boca con taninos suaves y redondos y gran persistencia. Es un vino para disfrutar desde ahora y que por su estructura tiene asegurado un excelente añejamiento.",
-
-  },
-]
 
 export default function ProductCard(){
   const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -97,10 +78,16 @@ export default function ProductCard(){
                   <Button color="danger" variant="light" onPress={onClose}>
                     Close
                   </Button>
-                  <Button color="primary" onPress={onClose}>
-                    Contactanos
-                    <FaWhatsapp className='text-2xl cursor-pointer hover:text-[#4ade80]'/>
-                  </Button>
+                  
+                    <Button href={`https://wa.me/+5491127996521?text=Hola,%20estoy%20interesado%20en%20${item.title}`}
+                    as={Link}
+                    color="primary"
+                    showAnchorIcon
+                    variant="solid"
+                    anchorIcon={<FaWhatsapp className='text-2xl cursor-pointer hover:text-[#4ade80]'/>}
+                    >
+                      Contactanos                    
+                    </Button>
                 </ModalFooter>
               </>
             )}
