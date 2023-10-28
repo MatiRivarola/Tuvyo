@@ -20,4 +20,6 @@ export const list = [
     descripcion:"Es un vino de color rojo rubí con gran intensidad aromática. Con aromas complejos a pimienta, casis y frutos rojos.De gran concentración en boca con taninos suaves y redondos y gran persistencia. Es un vino para disfrutar desde ahora y que por su estructura tiene asegurado un excelente añejamiento.",
 
   },
+  
+  
 ]

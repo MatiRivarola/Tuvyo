@@ -2,13 +2,21 @@
 import React from "react";
 import {Card, CardHeader, CardBody, CardFooter, Image, Button,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import { FaWhatsapp }from 'react-icons/fa'
-import { list } from './List-of-products'
 import { Link } from "@nextui-org/react";
+import { list } from "./List-of-products";
+
 
 
 export default function ProductCard(){
   const [selectedProduct, setSelectedProduct] = React.useState(null);
 
+  const fetchData = async () => {
+    const res = await fetch('/api/notion/');
+    const data = await res.json();
+    console.log(data)
+    return data
+  };
+  
   const openModal = (product) => {
     setSelectedProduct(product)
   }
@@ -18,9 +26,9 @@ export default function ProductCard(){
   return(
     <>
     <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 px-1">
-      {list.map((item, index) => (
+      {list.map((item) => (
         <>
-          <Card shadow="sm" key={index} isPressable onPress={()=>openModal(item)}>
+          <Card shadow="sm" key={item.title} isPressable onPress={()=>openModal(item)}>
             <CardBody className="overflow-visible">
               <Image
                 shadow="sm"
@@ -71,7 +79,7 @@ export default function ProductCard(){
                   src={item.img}
                   alt={item.title}
                   />
-                  <h1>{item.descripcion}</h1>
+                  <h1>{item.winery}</h1>
                 
                 </ModalBody>
                 <ModalFooter>
