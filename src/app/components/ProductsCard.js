@@ -5,17 +5,27 @@ import { FaWhatsapp }from 'react-icons/fa'
 import { Link } from "@nextui-org/react";
 import { list } from "./List-of-products";
 
-
+import { fetchDataNotion } from "../api/notion/route";
 
 export default function ProductCard(){
   const [selectedProduct, setSelectedProduct] = React.useState(null);
 
-  const fetchData = async () => {
-    const res = await fetch('/api/notion/');
-    const data = await res.json();
-    console.log(data)
-    return data
-  };
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const notionData = await fetchDataNotion();
+        setData(notionData);
+        console.log(setData)
+      } catch (error) {
+        console.error("Error fetching data from Notion:", error);
+      }
+    };
+
+    getData();
+  }, []);
+  
   
   const openModal = (product) => {
     setSelectedProduct(product)
@@ -26,7 +36,7 @@ export default function ProductCard(){
   return(
     <>
     <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 px-1">
-      {list.map((item) => (
+      {data.map((item) => (
         <>
           <Card shadow="sm" key={item.title} isPressable onPress={()=>openModal(item)}>
             <CardBody className="overflow-visible">
