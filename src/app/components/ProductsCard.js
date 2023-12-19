@@ -4,26 +4,23 @@ import {Card, CardHeader, CardBody, CardFooter, Image, Button,Modal, ModalConten
 import { FaWhatsapp }from 'react-icons/fa'
 import { Link } from "@nextui-org/react";
 import { list } from "./List-of-products";
-
-import { fetchDataNotion } from "../api/notion/route";
+import { getProducts } from "../server/firebase/function";
 
 export default function ProductCard(){
   const [selectedProduct, setSelectedProduct] = React.useState(null);
-
+  const [products , setProducts] = React.useState([])
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const notionData = await fetchDataNotion();
-        setData(notionData);
-        console.log(setData)
-      } catch (error) {
-        console.error("Error fetching data from Notion:", error);
-      }
+    async function fetchProducts() {
+      const productList = await getProducts();
+      setProducts(productList);
+    }
+    try {
+      fetchProducts();
+    } catch (error) {
+      console.log(error);
     };
-
-    getData();
   }, []);
   
   
@@ -36,16 +33,16 @@ export default function ProductCard(){
   return(
     <>
     <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 px-1">
-      {data.map((item) => (
+      {products?.map((item) => (
         <>
-          <Card shadow="sm" key={item.title} isPressable onPress={()=>openModal(item)}>
+          <Card shadow="sm" key={item.id} isPressable onPress={()=>openModal(item)}>
             <CardBody className="overflow-visible">
               <Image
                 shadow="sm"
                 radius="lg"
                 width="100%"
                 height={210}
-                alt={item.title}
+                alt={item.description}
                 className="w-full object-cover h-[210px]"
                 src={item.img}
               />
@@ -89,7 +86,7 @@ export default function ProductCard(){
                   src={item.img}
                   alt={item.title}
                   />
-                  <h1>{item.winery}</h1>
+                  <h1>{item.description}</h1>
                 
                 </ModalBody>
                 <ModalFooter>
