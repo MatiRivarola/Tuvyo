@@ -1,9 +1,9 @@
 'use client'
 import { Image, Divider, } from "@nextui-org/react"
-import ProductCard from "./components/ProductsCard"
+import ProductCard from "../components/ProductsCard"
 import { motion, useInView } from 'framer-motion';
 import {  useRef } from 'react';
-import { fadeIn } from "./utils/variants"
+import { fadeIn } from "../utils/variants"
 
 
 export default function Home() {

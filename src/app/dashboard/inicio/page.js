@@ -1,14 +1,15 @@
+'use client'
 import { useState, useEffect } from "react";
 import { FcCheckmark } from "react-icons/fc"
-import Modal from "@common/modal";
-import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter} from "@nextui-org/react";
-import FormProduct from "@/components/form-products";
-import useAlert from "@hooks/useAlert";
+
+import Modal from '@common/modal'
+import FormProduct from "@components/form-product";
+import useAlert from "@hook/useAlert";
 import Alert from "@common/alert";
-import ProductsList from "@/client/component/all-products";
-import { getProducts } from "@/server/components/function-products";
+import ProductsList from "@components/products";
+import { getProducts } from "@firebase/function";
 import { deleteDoc, doc } from "firebase/firestore";
-import { db , storage } from "@firebase/config/client";
+import { db , storage } from "@firebase/client";
 import { ref , deleteObject } from "firebase/storage";
 
 export default function Products() {
