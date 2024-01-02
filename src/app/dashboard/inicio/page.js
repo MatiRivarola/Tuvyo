@@ -1,18 +1,18 @@
+"use client"
 import { useState, useEffect } from "react";
 import { FcCheckmark } from "react-icons/fc"
-import Modal from "@common/modal";
-import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter} from "@nextui-org/react";
-import FormProduct from "@/components/form-products";
-import useAlert from "@hooks/useAlert";
-import Alert from "@common/alert";
-import ProductsList from "@/client/component/all-products";
-import { getProducts } from "@/server/components/function-products";
+import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter , useDisclosure} from "@nextui-org/react";
+import FormProduct from "@server/component/form-product";
+import useAlert from "@hook/useAlert";
+import Alert from "../../common/alert"
+import ProductsList from "@server/component/product-list";
+import { getProducts } from "@firebase/config/function";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db , storage } from "@firebase/config/client";
 import { ref , deleteObject } from "firebase/storage";
 
 export default function Products() {
-  const [open, setOpen] = useState(false);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [products, setProducts] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
 
@@ -84,7 +84,7 @@ export default function Products() {
             <button
               type="button"
               className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-xl font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={() => setOpen(true)}
+              onPress={onOpen}
             >
               <FcCheckmark className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
               Add Product
@@ -142,8 +142,22 @@ export default function Products() {
           </div>
         </div>
       </div>
-      <Modal open={open} setOpen={setOpen}>
-        <FormProduct setOpen={setOpen} setAlert={setAlert} />
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+            <ModalHeader>
+              Agrega tu producto
+            </ModalHeader>
+            <ModalBody>
+              <FormProduct setAlert={setAlert} onClose={onClose}/>
+            </ModalBody>
+            <ModalFooter>
+
+            </ModalFooter>
+            </>
+          )}
+          </ModalContent>
       </Modal>
     </>
   );

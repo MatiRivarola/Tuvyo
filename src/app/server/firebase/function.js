@@ -1,4 +1,4 @@
-import { db , storage } from '@firebase/client'
+import { db , storage } from '@server/client'
 import { addDoc , setDoc, doc , collection, getDocs } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
