@@ -1,4 +1,4 @@
-import { db , storage } from '@server/client'
+import { db  } from '@firebase/client'
 import { addDoc , setDoc, doc , collection, getDocs } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -20,7 +20,7 @@ export async function createOrUpdateProduct(id, data) {
 }
 
 export async function fetchCategories() {
-  const categoriesCollectionRef = collection(db, 'categories');
+  const categoriesCollectionRef = collection(db, 'category');
   const categoriesSnapshot = await getDocs(categoriesCollectionRef);
   const categoriesList = categoriesSnapshot.docs.map(doc => ({
     id: doc.id,

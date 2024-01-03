@@ -1,4 +1,5 @@
-import { MdOutlineClose } from "react-icons/md";
+import { RiCloseCircleLine } from "react-icons/ri";
+
 const Alert = ({ alert, handleClose }) => {
   if (alert && alert?.autoClose) {
     setTimeout(() => {
@@ -13,7 +14,7 @@ const Alert = ({ alert, handleClose }) => {
           <div className="flex space-x-3">
             <div className="flex-1 leading-tight text-sm text-black font-medium">{alert.message}</div>
             <button type="button">
-              <MdOutlineClose className="w-6 h-6 text-gray-600" onClick={handleClose} />
+              <RiCloseCircleLine className="w-6 h-6 text-gray-600" onClick={handleClose} />
             </button>
           </div>
         </div>

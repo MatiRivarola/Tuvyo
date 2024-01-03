@@ -4,10 +4,9 @@
       "@/*": ["./src/*"],
       "@utils/*":["./src/app/utils/*"],
       "@components/*":["./src/app/components/*"],
-      "@firebase/config/*":["./src/app/server/firebase/*"],
-      "@server/*":["./src/app/server/firebase/*"],
-      "@server/component/*":["./src/app/server/component/*"],
-      "@hook/*":["./src/app/hook/*"]
+      "@firebase/*":["./src/app/server/firebase/*"],
+      "@hook/*":["./src/app/hook/*"],
+      "@common/*":["./src/app/common/*"]
     }
   }
 }
