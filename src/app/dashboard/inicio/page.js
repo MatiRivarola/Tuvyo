@@ -18,14 +18,15 @@ export default function Products() {
 
   const deleteImage = async (imagePath) => {
     //Hago referencia a la imagen
-    const imageRef = ref(storage, `images/${imagePath}`);
+    console.log(imagePath)
+    const imageRef = ref(storage, imagePath);
   
     try {
       await deleteObject(imageRef);
       console.log("Imagen eliminada correctamente");
     } catch (error) {
       console.error("Error al eliminar la imagen: ", error);
-      throw new Error("Error al eliminar la imagen.");  //Este errror va a ser atrapado en handleDelete()
+      throw new Error("Error al eliminar la imagen.");  //Este error va a ser atrapado en handleDelete()
     }
   }
   

@@ -1,8 +1,7 @@
 import { RiCloseCircleLine } from "react-icons/ri";
-
+import extractFirebasePathFromURL from "../server/component/extract-url"
 export  default function ProductsList({product,handleDelete}){
   
-
   return(
   <>
   <tr key={`Product-item-${product.id}`}>
@@ -29,7 +28,13 @@ export  default function ProductsList({product,handleDelete}){
       </a>
     </td>
     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <RiCloseCircleLine className="flex-shrink-0 h-6 w-6 cursor-pointer text-gray-400" onClick={handleDelete} role="button" aria-label="Eliminar producto"/>
+      <RiCloseCircleLine className="flex-shrink-0 h-6 w-6 cursor-pointer text-gray-400" 
+        onClick={() => { 
+            const imagePath = extractFirebasePathFromURL(product.images)
+            handleDelete(product.id , imagePath)}} 
+        role="button" 
+        aria-label="Eliminar producto"
+        />
     </td>
   </tr>
   </>
