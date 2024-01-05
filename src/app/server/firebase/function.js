@@ -1,5 +1,5 @@
 import { db  } from '@firebase/client'
-import { addDoc , setDoc, doc , collection, getDocs } from 'firebase/firestore';
+import { addDoc , setDoc, doc , collection, getDocs,  query , orderBy, startAfter, limit, where } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 // Funcion para crear un Producto con id automatico
@@ -37,6 +37,27 @@ export async function getProducts(){
     ...doc.data()
   }));
   return productsList;
+};
+
+export const getProductsPagination = async (lastVisible, searchTerm) => {
+  const productsRef = collection(db, 'products');
+  let q = query(productsRef, orderBy('name'), limit(10));
+
+  if (searchTerm) {
+    q = query(productsRef, where('name', '==', searchTerm), orderBy('name'), limit(10));
+  }
+
+  if (lastVisible) {
+    q = query(q, startAfter(lastVisible));
+  }
+
+  const snapshot = await getDocs(q);
+  const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+  const lastDoc = snapshot.docs[snapshot.docs.length - 1] || null;
+
+  return { products, lastDoc };
+  
 };
 
 export function displayImage(url) {

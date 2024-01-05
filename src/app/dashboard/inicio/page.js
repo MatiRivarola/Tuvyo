@@ -6,7 +6,7 @@ import FormProduct from "@components/form-product";
 import useAlert from "@hook/useAlert";
 import Alert from "@common/alert";
 import ProductsList from "@components/products";
-import { getProducts } from "@firebase/function";
+import { getProductsPagination} from "@firebase/function";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db , storage } from "@firebase/client";
 import { ref , deleteObject } from "firebase/storage";
@@ -15,6 +15,11 @@ export default function Products() {
   const [open, setOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
+  // Estados adicionales para paginación y búsqueda
+  const [lastVisible, setLastVisible] = useState(null); // Referencia al último documento cargado
+  const [loading, setLoading] = useState(false);       // Estado para indicar carga
+  const [searchTerm, setSearchTerm] = useState('');     // Término de búsqueda
+
 
   const deleteImage = async (imagePath) => {
     //Hago referencia a la imagen
@@ -59,17 +64,36 @@ export default function Products() {
     }
   }
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const productList = await getProducts();
-        setProducts(productList);
-      } catch (error) {
-        console.log(error);
-      }
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const { products: newProducts, lastDoc } = await getProductsPagination(lastVisible, searchTerm);
+      console.log("Productos cargados:", newProducts);
+      setProducts(prevProducts => lastVisible ? [...prevProducts, ...newProducts] : newProducts);
+      setLastVisible(lastDoc);
+    } catch (error) {
+      console.error("Error al cargar productos:", error);
     }
+    setLoading(false);
+  };
+
+  const handleLoadMore = () => {
+    if (products.length > 0) {
+      setLastVisible(products[products.length - 1]);
+    }
+  };
+  
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setProducts([]); // Limpia la lista de productos actual
+    setLastVisible(null); // Reinicia la referencia para la paginación
     fetchProducts();
-  }, []);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, [searchTerm]);
+  
 
   return (
       <>
@@ -93,7 +117,10 @@ export default function Products() {
           </span>
         </div>
       </div>
-
+      <form onSubmit={handleSearch}>
+        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <button type="submit">Buscar</button>
+      </form>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -143,6 +170,9 @@ export default function Products() {
           </div>
         </div>
       </div>
+      {!loading && (
+        <button onClick={handleLoadMore}>Cargar más</button>
+      )}
       <Modal open={open} setOpen={setOpen}>
         <FormProduct setOpen={setOpen} setAlert={setAlert} />
       </Modal>
