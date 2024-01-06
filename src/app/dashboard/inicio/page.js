@@ -67,10 +67,15 @@ export default function Products() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const { products: newProducts, lastDoc } = await getProductsPagination(lastVisible, searchTerm);
-      console.log("Productos cargados:", newProducts);
-      setProducts(prevProducts => lastVisible ? [...prevProducts, ...newProducts] : newProducts);
-      setLastVisible(lastDoc);
+      const response = await getProductsPagination(lastVisible, searchTerm);
+      if (response) {
+        const { products: newProducts, lastDoc } = response;
+        console.log("Productos cargados:", newProducts); // Para depuración
+        setProducts(prevProducts => lastVisible ? [...prevProducts, ...newProducts] : newProducts);
+        setLastVisible(lastDoc);
+      } else {
+        console.error("No se recibieron datos de getProductsPagination");
+      }
     } catch (error) {
       console.error("Error al cargar productos:", error);
     }
@@ -78,7 +83,7 @@ export default function Products() {
   };
 
   const handleLoadMore = () => {
-    if (products.length > 0) {
+    if (products && products.length > 0) {
       setLastVisible(products[products.length - 1]);
     }
   };

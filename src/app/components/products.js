@@ -1,6 +1,7 @@
 import { RiCloseCircleLine } from "react-icons/ri";
 import extractFirebasePathFromURL from "../server/component/extract-url"
 export  default function ProductsList({product,handleDelete}){
+  console.log("Productos mostrados en ProductsList",product)
   
   return(
   <>

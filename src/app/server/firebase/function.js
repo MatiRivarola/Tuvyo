@@ -41,10 +41,10 @@ export async function getProducts(){
 
 export const getProductsPagination = async (lastVisible, searchTerm) => {
   const productsRef = collection(db, 'products');
-  let q = query(productsRef, orderBy('name'), limit(10));
+  let q = query(productsRef, orderBy('title'), limit(10));
 
   if (searchTerm) {
-    q = query(productsRef, where('name', '==', searchTerm), orderBy('name'), limit(10));
+    q = query(productsRef, where('title', '==', searchTerm), orderBy('title'), limit(10));
   }
 
   if (lastVisible) {
@@ -53,11 +53,9 @@ export const getProductsPagination = async (lastVisible, searchTerm) => {
 
   const snapshot = await getDocs(q);
   const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
   const lastDoc = snapshot.docs[snapshot.docs.length - 1] || null;
-
+  console.log("Esta es la lista de productos",products)
   return { products, lastDoc };
-  
 };
 
 export function displayImage(url) {
